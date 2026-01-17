@@ -1,10 +1,7 @@
 import pandas as pd
 
-data = pd.DataFrame({
-    'name': ['1',2],
-    'cc': [1,2]
-})
-a= data.index
-print(a)
-print(type(a))
+data = pd.read_csv('data/movies.csv', encoding='latin-1', sep='\t', usecols=['title', 'genres'], index_col='title')
 
+
+
+print(data.loc['Toy Story (1995)'].values)

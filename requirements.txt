@@ -1,6 +1,8 @@
+pydantic
 requests
 pandas
 streamlit
 scikit-learn
 fastapi
 fastapi[standard]
+httpx

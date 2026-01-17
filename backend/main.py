@@ -1,28 +1,11 @@
 from fastapi import FastAPI
-from .routers import poster
-from models.recommendation import Recommendation
-
-model = Recommendation()
+from .routers import model
+from .routers.movies import movies
 
 app = FastAPI()
-app.include_router(poster.router)
+app.include_router(movies.router)
+app.include_router(model.router)
 
 @app.get('/')
-async def home():
+def home():
     return 'this is home'
-
-@app.get('/recommend')
-async def recommend(name_moive: str, limit: int = 10):
-    try:
-        return model.recommend(name_movie=name_moive, limit=limit)
-    except Exception as e:
-        return str(e)
-
-@app.get('/movies/name')
-def name():
-    try:
-        return list(model.get_name_movie())
-    except Exception as e:
-        return str(e)
-
-

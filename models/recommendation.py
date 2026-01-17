@@ -12,6 +12,7 @@ class Recommendation:
         tfidf_matrix = vectorizer.fit_transform(data['genres'])
         cosine_sim = pd.DataFrame(cosine_similarity(tfidf_matrix), index=data['title'], columns=data['title'])
         self.model = cosine_sim
+        self.data = data.set_index('title')
 
     def get_name_movie(self):
         return self.model.index
